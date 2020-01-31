@@ -1,0 +1,533 @@
+/* -------- COLOR PALETTE -------- */
+
+$border-grey: #bbb;
+$dark-blue: #00264d;
+$dark-red: #d23a30;
+$menu-off-white: #f9f9f9;
+$cool-blue: #32b7e5;
+$path-fill: #222;
+$path-stroke: #fff;
+$hover-yellow: #FFCC67;
+$click-yellow: #FFBB34;
+$territory-box-gray: #a9a9a9;
+$tip-header-only-opacity: rgba(256, 256, 256, 0.75);
+$tip-inside-border-gray: #d8d8d8;
+$tip-category-footnote: #5c5c5c;
+
+/* --------- FONTS ---------- */
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+
+$serif: Merriweather, serif;
+$roboto: Roboto, sans-serif;
+$arial: Arial, sans-serif;
+$georgia: Georgia, Arial, sans-serif;
+
+
+/* -------- MAP DIV/CANVAS ------- */
+
+#map {
+  width: 100%;
+  min-width: 37.5rem;
+  max-width: 52.5rem;
+  position: relative;
+  margin-left: 0.0625rem;
+  padding: 0.5rem 0;
+
+  &.style2 {
+    border-bottom: 0.25rem double $border-grey;
+    border-top: 0.25rem double $border-grey;
+  }
+}
+
+.baseLayer {
+  fill: #fff;
+}
+
+/* -------- INSTRUCTIONS TEXT ------- */
+
+.instructions {
+  font-size: 0.875rem;
+  font-family: $roboto;
+
+  &.instructions-bold {
+    font-weight: bold;
+  }
+}
+
+/* -------- MENU BAR -------*/
+
+#menuBarRect {
+  &.style1 {
+    fill: $dark-blue;
+  }
+
+  &.style2 {
+    fill: $menu-off-white;
+  }
+}
+
+.menuBarText {
+  font-size: 1rem;
+  font-family: $arial;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-anchor: middle;
+
+  &.style1 {
+    fill: #fff;
+  }
+
+  &.style2 {
+    fill: black;
+  }
+}
+
+.selectLayerHeader {
+  font-size: 1.125rem;
+  font-family: $georgia;
+  font-style: italic;
+
+  &.style1 {
+    fill: #fff;
+  }
+
+  &.style2 {
+    fill: black;
+  }
+}
+
+.menuTriangle {
+  &.style1 {
+    fill: #fff;
+  }
+
+  &.style2 {
+    fill: #aaa;
+  }
+}
+
+.mapToggle {
+  &.style1 {
+    fill: $dark-blue;
+    stroke: white;
+    stroke-width: 0.0625rem;
+  }
+
+  &.style2 {
+    fill: $menu-off-white;
+  }
+}
+
+.toggle {
+  cursor: pointer;
+}
+
+.toggleText {
+  user-select: none;
+  text-anchor: middle;
+  font-family: $arial;
+  font-size: 1rem;
+
+  &.style1 {
+    fill: white;
+  }
+
+  &.style2 {
+    fill: #5d5d5d;
+
+    &:hover {
+      fill: $dark-red;
+    }
+  }
+}
+
+.mapToggled {
+  stroke-width: 0.125rem;
+
+  &.style1 {
+    fill: $cool-blue;
+  }
+
+  &.style2 {
+    fill: $menu-off-white;
+  }
+}
+
+.mapToggledText {
+  fill: #fff;
+
+  &.style2 {
+    font-weight: bold;
+    fill: $dark-blue;
+  }
+}
+
+.toggleHovered {
+  stroke-width: 0.125rem;
+}
+
+#slidingBorder {
+  fill: $dark-red;
+}
+
+.inactiveLayer {
+  display: none;
+}
+
+#resetG {
+  cursor: pointer;
+}
+
+.resetZoomText {
+  fill: red;
+  text-anchor: middle;
+  font-style: italic;
+  font-family: $arial;
+  font-size: 0.875rem;
+}
+
+#dataSelect {
+  position: absolute;
+  padding: 0.0625rem;
+  height: 1.375rem;
+}
+
+/* https://www.filamentgroup.com/lab/select-css.html */
+.select-css {
+  display: inline-block;
+  font-size: 0.8438rem;
+  font-family: $arial;
+  color: #444;
+  line-height: 1.3;
+  padding: .6em 1.4em .5em .8em;
+  width: 10rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0.0625rem solid #aaa;
+  box-shadow: 0 0.0625rem 0 0.0625rem rgba(0, 0, 0, 0.04);
+  border-radius: .35em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #fff 0%, #e5e5e5 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right .35em top 50%, 0 0;
+  background-size: .7em auto, 100%;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:hover {
+    border-color: #888;
+  }
+
+  option {
+    font-weight: normal;
+  }
+}
+
+*[dir="rtl"] .select-css {
+  /* Support for rtl text, explicit support for Arabic and Hebrew */
+  background-position: left .7em top 50%, 0 0;
+  padding: .6em .8em .5em 1.4em;
+}
+
+:root {
+  &:lang(ar) .select-css, &:lang(iw) .select-css {
+    /* Support for rtl text, explicit support for Arabic and Hebrew */
+    background-position: left .7em top 50%, 0 0;
+    padding: .6em .8em .5em 1.4em;
+  }
+}
+
+.select-css {
+  &:disabled, &[aria-disabled=true] {
+    /* Disabled styles */
+    color: graytext;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #fff 0%, #e5e5e5 100%);
+  }
+
+  &:disabled:hover, &[aria-disabled=true] {
+    border-color: #aaa;
+  }
+}
+
+.aboutDataLabel {
+  cursor: pointer;
+  font-style: italic;
+  font-size: 1rem;
+  font-family: "Times New Roman", serif;
+  opacity: 0;
+  pointer-events: none;
+
+  &.style1 {
+    fill: #fff;
+
+    &.aboutLabelLower {
+      fill: black;
+    }
+  }
+
+  &.style2 {
+    fill: black;
+  }
+}
+
+#aboutDataDiv {
+  padding: 0.9375rem;
+  border-radius: 0.1875rem;
+  background-color: rgba(256, 256, 256, 0.97);
+  pointer-events: none;
+  opacity: 0;
+  font-family: $serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+
+  &.style1 {
+    border: 0.125rem solid $cool-blue;
+  }
+
+  &.style2 {
+    border: 0.125rem solid $dark-red;
+  }
+}
+
+/*-------MAP--------*/
+
+#mapZoomRect {
+  fill-opacity: 0;
+
+  &.style1 {
+    stroke: $dark-blue;
+    stroke-opacity: 1;
+  }
+
+  &.style2 {
+    stroke: none;
+  }
+}
+
+.basePath {
+  fill: #181818;
+  stroke: none;
+}
+
+path {
+  &.nonScaling {
+    vector-effect: non-scaling-stroke;
+  }
+
+  &.serviceAreas {
+    fill: $path-fill;
+    stroke: $path-stroke;
+    stroke-width: 0.0313rem;
+  }
+}
+
+.serviceAreas.hovered {
+  fill: $hover-yellow !important;
+}
+
+path.states {
+  fill: $path-fill;
+  stroke: $path-stroke;
+  stroke-width: 0.0313rem;
+}
+
+.states.hovered {
+  fill: $hover-yellow !important;
+}
+
+.selected {
+  fill: $click-yellow !important;
+}
+
+path.borderSquares {
+  fill: none;
+  stroke: $territory-box-gray;
+  stroke-width: 0.0625rem;
+  stroke-dasharray: 8,2;
+}
+
+.stateInteriorMesh {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 0.0625rem;
+  pointer-events: none;
+}
+
+.territoryBox {
+  fill: #fff;
+  stroke: $territory-box-gray;
+  stroke-width: 0.0625rem;
+  stroke-opacity: 0;
+  fill-opacity: 0;
+  vector-effect: non-scaling-stroke;
+}
+
+.hoveredBox {
+  stroke: $hover-yellow !important;
+}
+
+/*-------LEGEND-------*/
+
+#legendTitle {
+  font-family: $serif;
+  font-size: 1rem;
+  pointer-events: none;
+  opacity: 0;
+  text-anchor: middle;
+  fill: #2f2f2f;
+}
+
+#legendBkgdRect {
+  fill: #fff;
+}
+
+.legendRect {
+  stroke: #fff;
+  stroke-width: 0.0625rem;
+}
+
+.legendItems {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.legendValues {
+  text-anchor: middle;
+  font-size: 0.875rem;
+  font-family: $arial;
+}
+
+.legendHoveredNo {
+  fill: #b1b1b1 !important;
+}
+
+/*-------TOOLTIPS--------*/
+
+.tooltip {
+  /*width set in JS*/
+  position: absolute;
+  color: black;
+  padding: 0;
+  background-color: rgba(256, 256, 256, 1);
+  border-radius: 0.625rem;
+  box-shadow: 0.25rem 0.25rem 0.625rem rgba(0, 0, 0, 0.4);
+  z-index: 50;
+  display: none;
+  opacity: 0;
+  font-family: $arial;
+  line-height: 1.2;
+
+  &.tipTitleOnly {
+    background-color: $tip-header-only-opacity;
+  }
+}
+
+.tipHeaderP {
+  border-top-left-radius: 0.625rem;
+  border-top-right-radius: 0.625rem;
+  margin: 0;
+  padding: 0.625rem 0.625rem;
+  text-align: center;
+  font-size: 1.125rem;
+  color: #fff;
+  font-family: $serif;
+  border-bottom: 0.3125rem double #fff;
+}
+
+.tipTitleOnly .tipHeaderP {
+  border-radius: 0.625rem;
+  border: 0.0625rem solid black;
+  color: $dark-red;
+  font-size: 1rem;
+}
+
+.tipHeaderP {
+  &.style1 {
+    background-color: $cool-blue;
+  }
+
+  &.style2 {
+    background-color: $dark-blue;
+  }
+}
+
+.tipTitleOnly .tipHeaderP {
+  background-color: $tip-header-only-opacity;
+}
+
+.tipContentDiv {
+  margin: 0;
+  padding: 0;
+}
+
+.tipDataDiv {
+  padding: 0rem;
+}
+
+.tipGraphHeader {
+  font-family: $arial;
+  color: $dark-blue;
+  margin: 1.25rem 0.625rem 0.9375rem 0.625rem;
+  padding: 0 0 0.1875rem 0;
+  border-bottom: 0.0625rem solid $tip-inside-border-gray;
+  text-align: center;
+  font-size: 0.9375rem;
+}
+
+.tipGraphCategory {
+  margin: 0.1875rem 0 0.4375rem 0;
+  font-size: 0.875rem;
+  font-family: $arial;
+  text-transform: uppercase;
+  color: $tip-category-footnote;
+}
+
+.tipGraphValues {
+  font-family: $arial;
+  font-size: 1rem;
+}
+
+.tipNationalLabel {
+  margin-bottom: 0.625rem;
+}
+
+.tipGraphFootnote {
+  text-align: right;
+  margin: 0.4375rem 0 0.3125rem 0;
+  padding-right: 0.9375rem;
+  font-size: 0.875rem;
+  font-family: $arial;
+  color: $tip-category-footnote;
+}
+
+.tipInfo {
+  margin: 0;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.tipInfoSection {
+  margin: 0 0 0.8125rem 0;
+  padding: 0.9375rem 0.625rem 0.625rem 0.625rem;
+  text-align: center;
+  border-top: 0.25rem double $tip-inside-border-gray;
+}
+
+.tipLink a {
+  color: $dark-blue;
+  font-size: 0.9375rem;
+  font-family: $arial;
+  text-decoration: underline;
+
+  &:hover {
+    color: $cool-blue;
+  }
+}
