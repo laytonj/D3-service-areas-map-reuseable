@@ -1653,7 +1653,7 @@
 			d3.select("#map").selectAll("*").remove();
 			transitionInComplete = false;
 
-			drawServiceAreas(true, false, 1, false, 2, true, true, false, false); //(dataMenu, saFirst, animateIn, combineGU, mapStyle, linksOnTooltip, tooltipOnMouse, zoomOnClick, tooltipTitleOnly)
+			drawServiceAreas(false, false, 1, false, 2, false, true, false, true); //(dataMenu, saFirst, animateIn, combineGU, mapStyle, linksOnTooltip, tooltipOnMouse, zoomOnClick, tooltipTitleOnly)
 
 		//Or don't!!
 		} else if (document.getElementById("map").offsetWidth <= 600) {

@@ -7,18 +7,31 @@ const concatenate = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
+const replace = require('gulp-replace');
 
 
 const origin = 'src';
 const destination = 'build';
 
 //HTML
+
 function html(cb) {
   src(`${origin}/**/*.html`).pipe(dest(destination));
   cb();
 }
 
-//CSS
+function html_dev(cb) {
+  src(`${origin}/**/*.html`)
+    .pipe(replace("css/serviceAreasMap.css", "https://dev2015.lsc.gov/programprofilemap/budget-request-map/css/serviceAreasMap.css"))
+    .pipe(replace("js/d3-composite-projections.min.js", "https://dev2015.lsc.gov/programprofilemap/budget-request-map/js/d3-composite-projections.min.js"))
+    .pipe(replace("js/serviceAreasMap.js", "https://dev2015.lsc.gov/programprofilemap/budget-request-map/js/serviceAreasMap.js"))
+    .pipe(dest(destination));
+
+  cb();
+}
+
+
+//CSS & SCSS
 function scss(cb) {
   src([
     `${origin}/scss/serviceAreasMap.scss`
@@ -49,6 +62,26 @@ function js(cb) {
 
   cb();
 }
+
+function js_dev(cb) {
+  src([
+    `${origin}/js/config.js`,
+    `${origin}/js/serviceAreasMap.js`
+  ])
+  .pipe(babel({
+    presets: ['@babel/env']
+  }))
+  .pipe(concatenate('serviceAreasMap.js'))
+  .pipe(uglify())
+  .pipe(replace("geo_data/service_areas_topojson_2020_01_16.json", "https://dev2015.lsc.gov/programprofilemap/budget-request-map/geo_data/service_areas_topojson_2020_01_16.json"))
+  .pipe(replace("geo_data/mapAreasData_keyed.json", "https://dev2015.lsc.gov/programprofilemap/budget-request-map/geo_data/mapAreasData_keyed.json"))
+  .pipe(dest(`${destination}/js`));
+
+  src(`${origin}/js/d3-composite-projections.min.js`).pipe(dest(`${destination}/js`));
+
+  cb();
+}
+
 
 //JSON
 function json(cb) {
@@ -81,5 +114,7 @@ function watcher(cb) {
   cb();
 }
 
+
 exports.clean = clean;
 exports.default = series(clean, parallel(html, scss, js, json), server, watcher);
+exports.publish_dev = series(clean, parallel(html_dev, scss, js_dev, json));
