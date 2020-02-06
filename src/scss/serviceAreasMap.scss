@@ -521,13 +521,20 @@ path.borderSquares {
   border-top: 0.25rem double $tip-inside-border-gray;
 }
 
-.tipLink a {
-  color: $dark-blue;
+div.tipLink a {
+  display: block;
+  border-radius: 1rem;
+  background-color: $menu-off-white;
+  padding: 0.25rem 0.5rem;
+  color: $dark-red;
   font-size: 0.9375rem;
   font-family: $arial;
-  text-decoration: underline;
+  font-weight: bold;
+  text-decoration: none;
 
   &:hover {
-    color: $cool-blue;
+    background-color: $dark-red;
+    cursor: pointer;
+    color: white;
   }
 }

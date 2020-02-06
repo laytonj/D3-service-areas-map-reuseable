@@ -748,15 +748,15 @@
 					.attr('class', 'tipContentDiv tipInfoSection');
 
 				tipInfo
-				.append('span')
+				.append('div')
 				.attr('class', 'tipLink')
 				.html(function(d) {
 					if (STs.includes(d) && mapAreasData[d].profileType == 'org') {
-						return '<a href="' + mapAreasData[d].link + '">' + "See the sole grantee's profile" + '</a>';
+						return '<a href="' + mapAreasData[d].link + '"><span>' + "See the sole grantee's profile" + '</span></a>';
 					} else if (STs.includes(d)) {
-						return '<a href="' + mapAreasData[d].link + '">' + "See the aggregate state profile" + '</a>';
+						return '<a href="' + mapAreasData[d].link + '"><span>' + "See the aggregate state profile" + '</span></a>';
 					} else {
-						return '<a href="' + mapAreasData[d].link + '">' + "See this grantee's profile" + '</a>';
+						return '<a href="' + mapAreasData[d].link + '"><span>' + "See this grantee's profile" + '</span></a>';
 					}
 				});
 			}
@@ -1651,6 +1651,7 @@
 		// Draw it!!
 		if (document.getElementById("map").offsetWidth > 600 & transitionInComplete == true) {
 			d3.select("#map").selectAll("*").remove();
+			d3.select("#map").style('visibility', 'visible');
 			transitionInComplete = false;
 
 			drawServiceAreas(false, false, 1, false, 2, false, true, false, true); //(dataMenu, saFirst, animateIn, combineGU, mapStyle, linksOnTooltip, tooltipOnMouse, zoomOnClick, tooltipTitleOnly)
@@ -1658,6 +1659,7 @@
 		//Or don't!!
 		} else if (document.getElementById("map").offsetWidth <= 600) {
 			d3.select("#map").selectAll("*").remove();
+			d3.select("#map").style('visibility', 'hidden');
 		}
 	}
 
